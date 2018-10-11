@@ -22,4 +22,14 @@
         <servlet-name>SystemServlet</servlet-name>
         <url-pattern>/SystemServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <description>注册</description>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>Servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

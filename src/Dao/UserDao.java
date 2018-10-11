@@ -22,4 +22,9 @@ public class UserDao extends BaseDao{
         }
         return null;
     }
+
+    public boolean Register(String name,String password){
+        String sql = "insert into user values(null,'"+name+"','"+password+"')";
+        return update(sql);
+    }
 }

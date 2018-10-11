@@ -21,7 +21,7 @@ public class SystemServlet extends HttpServlet {
 
     private void toSystemView(HttpServletRequest request, HttpServletResponse response) {
         try {
-            request.getRequestDispatcher("view/system.jsp").forward(request,response);
+            request.getRequestDispatcher("system.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
