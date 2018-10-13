@@ -7,4 +7,4 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:forward page="/login.jsp"></jsp:forward>
+<jsp:forward page="/view/login.jsp"></jsp:forward>

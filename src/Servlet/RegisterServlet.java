@@ -16,6 +16,18 @@ public class RegisterServlet extends HttpServlet {
         String method = request.getParameter("method");
         if("Register".equals(method)){
             register(request,response);
+        }else if("toRegisterView".equals(method)){
+            toRegisterView(request,response);
+        }
+    }
+
+    private void toRegisterView(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.getRequestDispatcher("view/register.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
