@@ -11,6 +11,5 @@
     <title>Title</title>
 </head>
 <body>
-hi
 </body>
 </html>

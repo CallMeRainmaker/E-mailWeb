@@ -13,8 +13,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>学生管理系统 管理员后台</title>
-    <link rel="shortcut icon" href="favicon.ico"/>
-    <link rel="bookmark" href="favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="../easyui/css/default.css" />
     <link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css" />
     <link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css" />
@@ -22,27 +20,41 @@
     <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../easyui/js/outlook2.js"> </script>
     <script type="text/javascript">
-        var _menus = {"menus":[
-
-                {"menuid":"2","icon":"","menuname":"学生信息管理",
-
-                },
-                {"menuid":"4","icon":"","menuname":"班级信息管理",
-                    "menus":[
-                        {"menuid":"42","menuname":"班级列表","icon":"icon-house","url":"ClazzServlet?method=toClazzListView"}
-                    ]
-                },
-                {"menuid":"3","icon":"","menuname":"教师信息管理",
-                    "menus":[
-                        {"menuid":"31","menuname":"教师列表","icon":"icon-user-teacher","url":"TeacherServlet?method=toTeacherListView"},
-                    ]
-                },
-                {"menuid":"5","icon":"","menuname":"系统管理",
-                    "menus":[
-                        {"menuid":"51","menuname":"修改密码","icon":"icon-set","url":"SystemServlet?method=toPersonalView"},
-                    ]
-                }
-            ]};
+        var _menus = {
+            "menus": [{
+                "menuid": "1",
+                "menuname":"收件管理",
+                "icon":"icon-man",
+                "menus": [{
+                    "menuid": "11",
+                    "menuname":"收件箱",
+                    "icon":"icon-man",
+                    "url": ""
+                }],
+            },
+                {
+                "menuid": "2",
+                "menuname":"通讯管理",
+                "icon":"icon-man",
+                "menus": [{
+                    "menuid":"21",
+                    "menuname":"联系人",
+                    "icon":"icon-man",
+                    "url":""
+                }]
+            },
+                {
+                    "menuid": "3",
+                    "menuname": "密码管理",
+                    "icon": "icon-lock",
+                    "menus": [{
+                        "menuid": "31",
+                        "menuname": "修改密码",
+                        "icon": "icon-lock",
+                        "url": ""
+                    }]
+                }]
+        }
 
 
     </script>
@@ -55,13 +67,13 @@
     </div>
 </noscript>
 <div region="north" split="true" border="false" style="overflow: hidden; height: 30px;
-        background: url(images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
+        background: url(../images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
         line-height: 20px;color: #fff; font-family: Verdana, 微软雅黑,黑体">
     <span style="float:right; padding-right:20px;" class="head"><span style="color:red; font-weight:bold;">${user.name}&nbsp;</span>您好&nbsp;&nbsp;&nbsp;<a href="LoginServlet?method=logout" id="loginOut">安全退出</a></span>
-    <span style="padding-left:10px; font-size: 16px; ">学生信息管理系统</span>
+    <span style="padding-left:10px; font-size: 16px; ">海客邮箱</span>
 </div>
 <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
-    <div class="footer">Copyright &copy; By 【猿来入此】</div>
+    <div class="footer" align="center">Copyright &copy; By 胡旭东</div>
 </div>
 <div region="west" hide="true" split="true" title="导航菜单" style="width:180px;" id="west">
     <div id="nav" class="easyui-accordion" fit="true" border="false">
