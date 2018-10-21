@@ -20,9 +20,8 @@ public class BaseDao extends DbUtil {
     }
 
     public boolean update(String sql) {
-        PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = dbUtil.getConnection().prepareStatement(sql);
+            PreparedStatement preparedStatement = dbUtil.getConnection().prepareStatement(sql);
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

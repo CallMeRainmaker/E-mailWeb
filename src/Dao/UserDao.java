@@ -23,8 +23,23 @@ public class UserDao extends BaseDao{
         return null;
     }
 
+    public User Select(String name){
+        String sql = "select * from user where name = '"+name+"'";
+        ResultSet resultSet = query(sql);
+        try {
+            if(resultSet.next()){
+                User user = new User();
+                user.setName(resultSet.getString("Name"));
+                return user;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean Register(String name,String password){
-        String sql = "insert into user values(null,'"+name+"','"+password+"')";
+        String sql = "insert ignore into user values(null,'"+name+"','"+password+"')";
         return update(sql);
     }
 }

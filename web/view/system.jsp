@@ -12,18 +12,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>海客邮箱</title>
+    <title>学生管理系统 管理员后台</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="bookmark" href="favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="../easyui/css/default.css" />
     <link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css" />
     <link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css" />
     <script type="text/javascript" src="../easyui/jquery.min.js"></script>
     <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../easyui/js/outlook2.js"> </script>
     <script type="text/javascript">
         var _menus = {"menus":[
 
-                {"menuid":"1","icon":"","menuname":"写信","url":"StudentServlet?method=toStudentListView"},
-                {"menuid":"2","icon":"","menuname":"收信","url":"StudentServlet?method=toStudentListView"},
-                {"menuid":"3","icon":"","menuname":"联系人","url":"StudentServlet?method=toStudentListView"},
-                {"menuid":"4","icon":"","menuname":"联系人","url":"StudentServlet?method=toStudentListView"}
+                {"menuid":"2","icon":"","menuname":"学生信息管理",
+
+                },
+                {"menuid":"4","icon":"","menuname":"班级信息管理",
+                    "menus":[
+                        {"menuid":"42","menuname":"班级列表","icon":"icon-house","url":"ClazzServlet?method=toClazzListView"}
+                    ]
+                },
+                {"menuid":"3","icon":"","menuname":"教师信息管理",
+                    "menus":[
+                        {"menuid":"31","menuname":"教师列表","icon":"icon-user-teacher","url":"TeacherServlet?method=toTeacherListView"},
+                    ]
+                },
+                {"menuid":"5","icon":"","menuname":"系统管理",
+                    "menus":[
+                        {"menuid":"51","menuname":"修改密码","icon":"icon-set","url":"SystemServlet?method=toPersonalView"},
+                    ]
+                }
             ]};
 
 
@@ -37,10 +55,10 @@
     </div>
 </noscript>
 <div region="north" split="true" border="false" style="overflow: hidden; height: 30px;
-        background: url(../images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
+        background: url(images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
         line-height: 20px;color: #fff; font-family: Verdana, 微软雅黑,黑体">
     <span style="float:right; padding-right:20px;" class="head"><span style="color:red; font-weight:bold;">${user.name}&nbsp;</span>您好&nbsp;&nbsp;&nbsp;<a href="LoginServlet?method=logout" id="loginOut">安全退出</a></span>
-    <span style="padding-left:10px; font-size: 16px; ">海客邮箱</span>
+    <span style="padding-left:10px; font-size: 16px; ">学生信息管理系统</span>
 </div>
 <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
     <div class="footer">Copyright &copy; By 【猿来入此】</div>
@@ -49,6 +67,7 @@
     <div id="nav" class="easyui-accordion" fit="true" border="false">
         <!--  导航内容 -->
     </div>
+
 </div>
 <div id="mainPanle" region="center" style="background: #eee; overflow-y:hidden">
     <div id="tabs" class="easyui-tabs"  fit="true" border="false" >

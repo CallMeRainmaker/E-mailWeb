@@ -1,6 +1,7 @@
 package Servlet;
 
 import Dao.UserDao;
+import Model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,11 +36,14 @@ public class RegisterServlet extends HttpServlet {
         String name = request.getParameter("Name");
         String password = request.getParameter("Password");
         UserDao userDao = new UserDao();
-        if(userDao.Register(name,password)){
-            try {
-                response.getWriter().write("success");
-            } catch (IOException e) {
-                e.printStackTrace();
+        User user = userDao.Select(name);
+        if(user == null){
+            if(userDao.Register(name,password)){
+                try {
+                    response.getWriter().write("success");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }else{
             try {

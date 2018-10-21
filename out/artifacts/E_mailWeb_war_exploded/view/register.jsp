@@ -17,6 +17,38 @@
 <script>
     $(function () {
         $("#submit").click(function () {
+            /**校验用户名*/
+            //1.获取用户输入的数据
+            var uValue = document.getElementById("username").value;
+            if(uValue == "") {
+                //2.给出错误提示信息
+                alert("邮箱不能为空!");
+                return false;
+            }
+
+            /*校验邮箱*/
+            var eValue = document.getElementById("username").value;
+            if(!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(eValue)) {
+                alert("邮箱格式不正确!");
+                return false;
+            }
+
+            /*校验密码*/
+            var pValue = document.getElementById("password").value;
+            if(pValue == "") {
+                alert("密码不能为空!");
+                return false;
+            }
+
+            /**校验确认密码*/
+            var rpValue = document.getElementById("repassword").value;
+            if(rpValue != pValue) {
+                alert("两次密码输入不一致!");
+                return false;
+            }
+
+
+
             var data = $("#form").serialize();
             $.ajax({
                 type:"post",
@@ -25,15 +57,21 @@
                 dataType:"text",
                 success:function (msg) {
                     if("registerError" == msg){
-                        $.messager.alert("消息提醒","邮箱或密码错误","warning")
+                        $.messager.alert("消息提醒","邮箱已存在","warning")
                     }else if("success" == msg){
                         $.messager.alert("消息提醒","注册成功","warning")
-                        window.location.href = "view/login.jsp"
+                        function hello(){
+                            window.location.href = "view/login.jsp"
+                        }
+                        window.setTimeout(hello,1500)
                     }
                 }
             })
         })
     })
+
+
+
 </script>
 <head>
     <meta charset="UTF-8">
@@ -73,15 +111,15 @@
 <body>
 <div class="dowebok">
     <div class="logo"></div>
-    <form id="form" method="post">
+    <form id="form" class="form" method="post">
         <div class="form-item">
-            <input id="username" type="text" autocomplete="off" placeholder="输入邮箱" name="Name">
+            <input id="username" type="text" autocomplete="off" placeholder="输入邮箱" name="Name" >
         </div>
         <div class="form-item">
-            <input id="password" type="password" autocomplete="off" placeholder="输入密码" name="Password">
+            <input id="password" type="password" autocomplete="off" placeholder="输入密码" name="Password" >
         </div>
         <div class="form-item">
-            <input id="repassword" type="password" autocomplete="off" placeholder="再次输入密码" name="rePassword">
+            <input id="repassword" type="password" autocomplete="off" placeholder="再次输入密码" name="rePassword" >
         </div>
         <div class="form-item"><button id="submit" type="button">注 册</button></div>
     </form>
