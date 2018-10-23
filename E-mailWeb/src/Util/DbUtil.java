@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DbUtil {
-    private String DBUrl = "jdbc:mysql://localhost:3306/E-mail?useUnicode=true&characterEncoding=utf-8&useSSL=false";
+    private String DBUrl = "jdbc:mysql://localhost:3306/Email?useUnicode=true&characterEncoding=utf-8&useSSL=false";
     private String DBUser = "root";
     private String DBPassword = "19971008";
     private String jdbcName = "com.mysql.jdbc.Driver";
