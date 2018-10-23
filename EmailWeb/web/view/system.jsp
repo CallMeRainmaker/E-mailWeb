@@ -11,8 +11,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <title>海客邮箱</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>学生管理系统 管理员后台</title>
     <link rel="stylesheet" type="text/css" href="../easyui/css/default.css" />
     <link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css" />
     <link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css" />
@@ -29,7 +29,7 @@
                     "menuid": "11",
                     "menuname":"收件箱",
                     "icon":"icon-man",
-                    "url": ""
+                    "url": "AcceptMailServlet?method=AcceptMailView"
                 }],
             },
                 {
@@ -51,7 +51,7 @@
                         "menuid": "31",
                         "menuname": "修改密码",
                         "icon": "icon-lock",
-                        "url": ""
+                        "url": "SystemServlet?method=PersonView"
                     }]
                 }]
         }

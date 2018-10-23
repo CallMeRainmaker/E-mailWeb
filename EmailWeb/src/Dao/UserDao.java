@@ -39,7 +39,12 @@ public class UserDao extends BaseDao{
     }
 
     public boolean Register(String name,String password){
-        String sql = "insert ignore into user values(null,'"+name+"','"+password+"')";
+        String sql = "insert  into user values(null,'"+name+"','"+password+"')";
+        return update(sql);
+    }
+
+    public boolean EditPassword(User user,String password){
+        String sql = "update user set password = '"+password+"' where id = "+user.getId();
         return update(sql);
     }
 }

@@ -15,6 +15,32 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <script>
+    // function checkName(){
+    //     var name = $("#username").val();
+    //     if(name == ""){
+    //         $("#one").removeClass();
+    //         $("#one").addClass("message");
+    //         $("#one").html("用户名不能为空");
+    //         return false;
+    //     }
+    //     $.ajax({
+    //         type:"post",
+    //         url:"RegisterServlet?method=Register",
+    //         data:data,
+    //         dataType:"text",
+    //         success:function (msg) {
+    //             if("registerError" == msg){
+    //                 $("#one").removeClass();
+    //                 $("#one").addClass("message");
+    //                 $("#one").html(msg.message);
+    //             }else if("success" == msg){
+    //                 $("#one").removeClass();
+    //                 $("#one").addClass("message");
+    //                 $("#one").html(msg.message);
+    //             }
+    //         }
+    //     })
+    // }
     $(function () {
         $("#submit").click(function () {
             /**校验用户名*/
@@ -46,9 +72,6 @@
                 alert("两次密码输入不一致!");
                 return false;
             }
-
-
-
             var data = $("#form").serialize();
             $.ajax({
                 type:"post",
@@ -113,7 +136,8 @@
     <div class="logo"></div>
     <form id="form" class="form" method="post">
         <div class="form-item">
-            <input id="username" type="text" autocomplete="off" placeholder="输入邮箱" name="Name" >
+            <input id="username" type="text" autocomplete="off" placeholder="输入邮箱" name="Name" onblur="checkName()">
+            <span id="one"></span>
         </div>
         <div class="form-item">
             <input id="password" type="password" autocomplete="off" placeholder="输入密码" name="Password" >

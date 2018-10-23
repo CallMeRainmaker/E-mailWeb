@@ -32,4 +32,25 @@
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <description>收件</description>
+        <servlet-name>AcceptMailServlet</servlet-name>
+        <servlet-class>Servlet.AcceptMailServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AcceptMailServlet</servlet-name>
+        <url-pattern>/AcceptMailServlet</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <description>过滤器</description>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>Filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/SystemServlet</url-pattern>
+        <url-pattern>/AcceptMailServlet</url-pattern>
+    </filter-mapping>
 </web-app>
