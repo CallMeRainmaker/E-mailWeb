@@ -35,6 +35,9 @@
         $("#registerbtn").click(function () {
             window.location.href = "RegisterServlet?method=toRegisterView"
         })
+        $("#forgetbtn").click(function () {
+            window.location.href = "RegisterServlet?method=toForgetView"
+        })
     })
 </script>
 <head>
@@ -84,7 +87,7 @@
         <div class="form-item"><button id="submit" type="button">登 录</button></div>
         <div class="reg-bar">
             <a class="reg" href="javascript:" type="button" id="registerbtn">立即注册</a>
-            <a class="forget" href="javascript:">忘记密码</a>
+            <a class="forget" href="javascript:" type="button" id="forgetbtn">忘记密码</a>
         </div>
     </form>
 </div>

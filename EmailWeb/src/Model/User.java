@@ -3,6 +3,16 @@ package Model;
 public class User {
     private String name;
     private int id;
+    private String mobile;
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
     private String password;
 
     public String getName() {

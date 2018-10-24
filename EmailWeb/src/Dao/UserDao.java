@@ -29,8 +29,12 @@ public class UserDao extends BaseDao{
         try {
             if(resultSet.next()){
                 User user = new User();
-                user.setName(resultSet.getString("Name"));
+                user.setName(resultSet.getString("name"));
+                user.setMobile(resultSet.getString("mobile"));
+                user.setPassword(resultSet.getString("password"));
                 return user;
+            }else {
+                return null;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,13 +42,18 @@ public class UserDao extends BaseDao{
         return null;
     }
 
-    public boolean Register(String name,String password){
-        String sql = "insert  into user values(null,'"+name+"','"+password+"')";
+    public boolean Register(String name,String mobile,String password){
+        String sql = "insert  into user values(null,'"+name+"','"+mobile+"','"+password+"')";
         return update(sql);
     }
 
     public boolean EditPassword(User user,String password){
         String sql = "update user set password = '"+password+"' where id = "+user.getId();
+        return update(sql);
+    }
+
+    public boolean ForgetPassword(String name,String password){
+        String sql = "update user set password = '"+password+"' where name = '"+name+"'";
         return update(sql);
     }
 }

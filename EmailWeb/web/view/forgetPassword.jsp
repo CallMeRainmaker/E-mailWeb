@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: huxudong
-  Date: 18-10-8
-  Time: 下午5:47
+  Date: 18-10-24
+  Time: 下午4:42
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,59 +15,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <script>
-    // function checkName(){
-    //     var name = $("#username").val();
-    //     if(name == ""){
-    //         $("#one").removeClass();
-    //         $("#one").addClass("message");
-    //         $("#one").html("用户名不能为空");
-    //         return false;
-    //     }
-    //     $.ajax({
-    //         type:"post",
-    //         url:"RegisterServlet?method=Register",
-    //         data:data,
-    //         dataType:"text",
-    //         success:function (msg) {
-    //             if("registerError" == msg){
-    //                 $("#one").removeClass();
-    //                 $("#one").addClass("message");
-    //                 $("#one").html(msg.message);
-    //             }else if("success" == msg){
-    //                 $("#one").removeClass();
-    //                 $("#one").addClass("message");
-    //                 $("#one").html(msg.message);
-    //             }
-    //         }
-    //     })
-    // }
     $(function () {
         $("#submit").click(function () {
-            /**校验用户名*/
-                //1.获取用户输入的数据
-            var uValue = document.getElementById("username").value;
-            if (uValue == "") {
-                //2.给出错误提示信息
-                alert("邮箱不能为空!");
-                return false;
-            }
-
-            /*校验邮箱*/
-            var eValue = document.getElementById("username").value;
-            if (!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(eValue)) {
-                alert("邮箱格式不正确!");
-                return false;
-            }
-
-            /*检验电话*/
-            var mValue = document.getElementById("mobile").value;
-            if(mValue == ""){
-                alert("电话不能为空");
-                return false;
-            }else if(!(/^1(35|39)\d{8}$/.test(mValue))){
-                alert("电话为135或139开头的十一位数字，请重填");
-                return false;
-            }
 
             /*校验密码*/
             var pValue = document.getElementById("password").value;
@@ -85,18 +34,18 @@
             var data = $("#form").serialize();
             $.ajax({
                 type:"post",
-                url:"RegisterServlet?method=Register",
+                url:"RegisterServlet?method=forgetPassword",
                 data:data,
                 dataType:"text",
                 success:function (msg) {
-                    if("registerError" == msg){
-                        $.messager.alert("消息提醒","邮箱已存在","warning")
-                    }else if("success" == msg){
-                        $.messager.alert("消息提醒","注册成功","warning")
+                    if("success" == msg){
+                        $.messager.alert("消息提醒","重置成功","warning")
                         function hello(){
                             window.location.href = "LoginServlet?method=logout"
                         }
                         window.setTimeout(hello,1500)
+                    }else{
+                        $.messager.alert("消息提醒",msg,"error")
                     }
                 }
             })
@@ -109,7 +58,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>用户注册</title>
+    <title>忘记密码</title>
     <style>
         * { margin: 0; padding: 0; }
         html { height: 100%; }
@@ -147,18 +96,18 @@
     <div class="logo"></div>
     <form id="form" class="form" method="post">
         <div class="form-item">
-            <input id="username" type="text" autocomplete="off" placeholder="输入邮箱" name="Name" onblur="checkName()">
+            <input id="username" type="text" autocomplete="off" placeholder="邮箱" name="Name">
         </div>
         <div class="form-item">
-            <input id="mobile" type="text" autocomplete="off" placeholder="输入电话" name="Mobile">
+            <input id="mobile" type="text" autocomplete="off" placeholder="输入预留电话" name="Mobile">
         </div>
         <div class="form-item">
-            <input id="password" type="password" autocomplete="off" placeholder="输入密码" name="Password" >
+            <input id="password" type="password" autocomplete="off" placeholder="输入新密码" name="Password" >
         </div>
         <div class="form-item">
             <input id="repassword" type="password" autocomplete="off" placeholder="再次输入密码" name="rePassword" >
         </div>
-        <div class="form-item"><button id="submit" type="button">注 册</button></div>
+        <div class="form-item"><button id="submit" type="button">修 改</button></div>
     </form>
 </div>
 
