@@ -4,6 +4,8 @@ import Model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao extends BaseDao{
     public User Login(String name,String password){
@@ -40,6 +42,20 @@ public class UserDao extends BaseDao{
             e.printStackTrace();
         }
         return null;
+    }
+
+    public List<User> getUserList() throws SQLException {
+        String sql = "select * from user";
+        List<User> users = new ArrayList<User>();
+        ResultSet resultSet = query(sql);
+        if (resultSet.next()){
+            User user = new User();
+            user.setId(resultSet.getInt("id"));
+            user.setMobile(resultSet.getString("mobile"));
+            user.setName(resultSet.getString("name"));
+            users.add(user);
+        }
+        return users;
     }
 
     public boolean Register(String name,String mobile,String password){

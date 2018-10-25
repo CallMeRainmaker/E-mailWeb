@@ -53,4 +53,14 @@
         <url-pattern>/SystemServlet</url-pattern>
         <url-pattern>/AcceptMailServlet</url-pattern>
     </filter-mapping>
+
+    <servlet>
+        <description>联系人</description>
+        <servlet-name>ContactorServlet</servlet-name>
+        <servlet-class>Servlet.ContactorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContactorServlet</servlet-name>
+        <url-pattern>/ContactorServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
