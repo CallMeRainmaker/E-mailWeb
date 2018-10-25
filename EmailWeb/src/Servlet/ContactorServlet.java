@@ -29,9 +29,14 @@ public class ContactorServlet extends HttpServlet {
     }
 
     private void getUserList(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String mobile = request.getParameter("mobile");
         UserDao userDao = new UserDao();
+        User user = new User();
+        user.setName(name);
+        user.setMobile(mobile);
         try {
-            List<User> users = userDao.getUserList();
+            List<User> users = userDao.getUserList(user);
             Map<String,Object> ret = new HashMap<>();
             ret.put("rows",users);
             response.setCharacterEncoding("UTF-8");

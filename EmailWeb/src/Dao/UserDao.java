@@ -1,6 +1,7 @@
 package Dao;
 
 import Model.User;
+import Util.StringUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,16 +45,22 @@ public class UserDao extends BaseDao{
         return null;
     }
 
-    public List<User> getUserList() throws SQLException {
+    public List<User> getUserList(User user) throws SQLException {
         String sql = "select * from user";
+        if(!StringUtil.isEmpty(user.getName())){
+            sql += " and name like '%" + user.getName() + "%'";
+        }
+        if(!StringUtil.isEmpty(user.getMobile())){
+            sql += " and mobile like '%"+user.getMobile()+"%'";
+        }
         List<User> users = new ArrayList<User>();
-        ResultSet resultSet = query(sql);
+        ResultSet resultSet = query(sql.replaceFirst("and","where"));
         while(resultSet.next()){
-            User user = new User();
-            user.setId(resultSet.getInt("id"));
-            user.setMobile(resultSet.getString("mobile"));
-            user.setName(resultSet.getString("name"));
-            users.add(user);
+            User user1 = new User();
+            user1.setId(resultSet.getInt("id"));
+            user1.setMobile(resultSet.getString("mobile"));
+            user1.setName(resultSet.getString("name"));
+            users.add(user1);
         }
         return users;
     }

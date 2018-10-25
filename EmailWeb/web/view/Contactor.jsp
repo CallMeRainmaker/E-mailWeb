@@ -30,13 +30,21 @@
                 ]],
                 toolbar:"#toolbar"
             })
+
+            $("#search-btn").click(function () {
+                $('#datalist').datagrid('load',{
+                    name:$('#name').val(),
+                    mobile:$('#mobile').val()
+                })
+            })
         })
     </script>
 </head>
 <body>
 <table id="datalist" cellspacing="0" cellpadding="0"></table>
 <div id="toolbar">
-    <div style="margin-left: 10px;margin-top:4px;" >邮箱：<input id="mailList" class="easyui-textbox" name="mail" />
+    <div style="float: left;margin-top:4px;" class="datagrid-btn-separator" >&nbsp;&nbsp;邮箱：<input id="name" class="easyui-textbox" name="name" /></div>
+    <div style="margin-left: 10px;margin-top:4px;" >电话：<input id="mobile" class="easyui-textbox" name="mobile" />
         <a id="search-btn" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true">搜索</a>
     </div>
 </div>
