@@ -48,7 +48,7 @@ public class UserDao extends BaseDao{
         String sql = "select * from user";
         List<User> users = new ArrayList<User>();
         ResultSet resultSet = query(sql);
-        if (resultSet.next()){
+        while(resultSet.next()){
             User user = new User();
             user.setId(resultSet.getInt("id"));
             user.setMobile(resultSet.getString("mobile"));
