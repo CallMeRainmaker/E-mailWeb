@@ -3,6 +3,7 @@ package Servlet;
 import Dao.UserDao;
 import Model.User;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,24 @@ public class ContactorServlet extends HttpServlet {
             ContactorView(request,response);
         }else if("getUserList".equals(method)){
             getUserList(request,response);
+        }else if("GetUserList".equals(method)){
+            GetUserList(request,response);
         }
+    }
+
+    private void GetUserList(HttpServletRequest request, HttpServletResponse response) {
+        UserDao userDao = new UserDao();
+        try {
+            List<User> users = userDao.GetUserList();
+            try {
+                response.getWriter().write(JSONArray.fromObject(users).toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void getUserList(HttpServletRequest request, HttpServletResponse response) {
@@ -41,7 +59,7 @@ public class ContactorServlet extends HttpServlet {
             ret.put("rows",users);
             response.setCharacterEncoding("UTF-8");
             try {
-                response.getWriter().write(JSONArray.fromObject(users).toString());
+                    response.getWriter().write(JSONObject.fromObject(ret).toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }

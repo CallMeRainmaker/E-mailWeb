@@ -65,6 +65,20 @@ public class UserDao extends BaseDao{
         return users;
     }
 
+    public List<User> GetUserList() throws SQLException {
+        String sql = "select * from user";
+        List<User> users = new ArrayList<User>();
+        ResultSet resultSet = query(sql);
+        while(resultSet.next()){
+            User user1 = new User();
+            user1.setId(resultSet.getInt("id"));
+            user1.setMobile(resultSet.getString("mobile"));
+            user1.setName(resultSet.getString("name"));
+            users.add(user1);
+        }
+        return users;
+    }
+
     public boolean Register(String name,String mobile,String password){
         String sql = "insert  into user values(null,'"+name+"','"+mobile+"','"+password+"')";
         return update(sql);

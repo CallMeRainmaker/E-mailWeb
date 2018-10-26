@@ -24,36 +24,53 @@
             "menus": [{
                 "menuid": "1",
                 "menuname":"收件管理",
-                "icon":"icon-man",
+                "icon":"icon-folder",
                 "menus": [{
                     "menuid": "11",
                     "menuname":"收件箱",
-                    "icon":"icon-man",
+                    "icon":"icon-folder",
                     "url": "AcceptMailServlet?method=AcceptMailView"
                 }],
             },
                 {
-                "menuid": "2",
+                    "menuid": "2",
+                    "menuname":"发件管理",
+                    "icon":"icon-folder",
+                    "menus": [{
+                        "menuid": "21",
+                        "menuname":"写信",
+                        "icon":"icon-folder",
+                        "url": "SendMailServlet?method=SendMailView"
+                    },
+                    {
+                        "menuid": "22",
+                        "menuname":"发件箱",
+                        "icon":"icon-folder",
+                        "url": "S"
+                    }]
+            },
+                {
+                "menuid": "3",
                 "menuname":"通讯管理",
                 "icon":"icon-man",
                 "menus": [{
-                    "menuid":"21",
+                    "menuid":"31",
                     "menuname":"联系人",
                     "icon":"icon-man",
                     "url":"ContactorServlet?method=ContactorView"
                 }]
             },
                 {
-                    "menuid": "3",
+                    "menuid": "4",
                     "menuname": "密码管理",
                     "icon": "icon-lock",
                     "menus": [{
-                        "menuid": "31",
+                        "menuid": "41",
                         "menuname": "修改密码",
                         "icon": "icon-lock",
                         "url": "SystemServlet?method=PersonView"
                     }]
-                }]
+            }]
         }
 
 

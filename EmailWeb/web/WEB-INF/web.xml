@@ -43,6 +43,16 @@
         <url-pattern>/AcceptMailServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <description>发件</description>
+        <servlet-name>SendMailServlet</servlet-name>
+        <servlet-class>Servlet.SendMailServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendMailServlet</servlet-name>
+        <url-pattern>/SendMailServlet</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <description>过滤器</description>
         <filter-name>LoginFilter</filter-name>

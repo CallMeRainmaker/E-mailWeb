@@ -102,7 +102,7 @@
 						$("#passwordDialog").dialog("open");
 					}
 				}
-			],
+			]
 			
 	    });
 		
