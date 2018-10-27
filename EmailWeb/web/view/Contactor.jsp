@@ -18,12 +18,14 @@
     <script type="text/javascript">
         $(function () {
             $("#datalist").datagrid({
+
                 border:true,
                 fit: true,//自动大小
                 method: "post",
                 url: "ContactorServlet?method=getUserList",
                 sortOrder: 'DESC',
                 columns:[[
+                    {field: 'chk', checkbox: true, width: 50},
                     {field: 'id', title: 'ID', width: 100, sortable: true},
                     {field: 'name',title: '邮箱', width: 300},
                     {field: 'mobile', title: '电话', width: 300}
@@ -46,6 +48,7 @@
     <div style="float: left;margin-top:4px;" class="datagrid-btn-separator" >&nbsp;&nbsp;邮箱：<input id="name" class="easyui-textbox" name="name" /></div>
     <div style="margin-left: 10px;margin-top:4px;" >电话：<input id="mobile" class="easyui-textbox" name="mobile" />
         <a id="search-btn" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true">搜索</a>
+        <a id="send-btn" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-accept',plain:true">发送</a>
     </div>
 </div>
 </body>

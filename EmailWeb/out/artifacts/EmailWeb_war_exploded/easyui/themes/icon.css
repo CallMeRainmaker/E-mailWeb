@@ -1,8 +1,17 @@
 .icon-accept{
-	background:url('icons/accept.png')  no-repeat center center;
+	background:url('icon/accept.png')  no-repeat center center;
 }
 .icon-send{
-	background:url('icons/send.png') no-repeat center center;
+	background:url('icon/send.png') no-repeat center center;
+}
+.icon-sendbox{
+	background:url('icon/sendbox.png') no-repeat center center;
+}
+.icon-man1{
+	background:url('icon/man1.png') no-repeat center center;
+}
+.icon-man2{
+	background:url('icon/man2.png') no-repeat center center;
 }
 .icon-blank{
 	background:url('icons/blank.gif') no-repeat center center;
@@ -68,7 +77,7 @@
 	background:url('icons/man.png') no-repeat center center;
 }
 .icon-lock{
-	background:url('icons/lock.png') no-repeat center center;
+	background:url('icon/lock.png') no-repeat center center;
 }
 .icon-more{
 	background:url('icons/more.png') no-repeat center center;
