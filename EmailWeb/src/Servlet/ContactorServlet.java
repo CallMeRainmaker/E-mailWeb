@@ -32,9 +32,12 @@ public class ContactorServlet extends HttpServlet {
     }
 
     private void GetUserList(HttpServletRequest request, HttpServletResponse response) {
+        String name = (String)request.getSession().getAttribute("name");
+        User user = new User();
+        user.setName(name);
         UserDao userDao = new UserDao();
         try {
-            List<User> users = userDao.GetUserList();
+            List<User> users = userDao.GetUserList(user);
             try {
                 response.getWriter().write(JSONArray.fromObject(users).toString());
             } catch (IOException e) {

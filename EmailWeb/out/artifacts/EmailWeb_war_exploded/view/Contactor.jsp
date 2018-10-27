@@ -18,7 +18,7 @@
     <script type="text/javascript">
         $(function () {
             $("#datalist").datagrid({
-
+                singleSelect: true,//是否单选
                 border:true,
                 fit: true,//自动大小
                 method: "post",
@@ -39,6 +39,20 @@
                     mobile:$('#mobile').val()
                 })
             })
+
+            $("#send-btn").click(function () {
+                var selectRow = $("#datalist").datagrid("getSelected");
+                if(selectRow == null){
+                    $.messager.alert("消息提醒","请选择联系人","warning");
+                }else {
+                    var name = selectRow.name;
+                    $.ajax({
+                        url:$(window).attr({
+                            'location':'SendMailServlet?method=SendMailView&name='+name
+                        })
+                    })
+                }
+            })
         })
     </script>
 </head>
@@ -48,7 +62,7 @@
     <div style="float: left;margin-top:4px;" class="datagrid-btn-separator" >&nbsp;&nbsp;邮箱：<input id="name" class="easyui-textbox" name="name" /></div>
     <div style="margin-left: 10px;margin-top:4px;" >电话：<input id="mobile" class="easyui-textbox" name="mobile" />
         <a id="search-btn" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true">搜索</a>
-        <a id="send-btn" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-accept',plain:true">发送</a>
+        <a id="send-btn" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-Send',plain:true">发送</a>
     </div>
 </div>
 </body>

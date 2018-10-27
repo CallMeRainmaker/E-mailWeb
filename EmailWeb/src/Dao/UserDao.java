@@ -65,8 +65,11 @@ public class UserDao extends BaseDao{
         return users;
     }
 
-    public List<User> GetUserList() throws SQLException {
+    public List<User> GetUserList(User user) throws SQLException {
         String sql = "select * from user";
+        if(!StringUtil.isEmpty(user.getName())){
+            sql += " where name = '"+user.getName()+"'";
+        }
         List<User> users = new ArrayList<User>();
         ResultSet resultSet = query(sql);
         while(resultSet.next()){

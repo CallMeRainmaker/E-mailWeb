@@ -29,7 +29,7 @@
                 buttons: [
                     {
                         text:'发送',
-                        iconCls:'icon-user_add',
+                        iconCls:'icon-Send',
                     },
                     {
                         text:'取消',
@@ -47,7 +47,12 @@
                 multiple: false, //不可多选
                 editable: false, //不可编辑
                 method: "post",
-                url: "ContactorServlet?method=GetUserList"
+                url: "ContactorServlet?method=GetUserList",
+                onLoadSuccess: function(){
+                    //默认选择第一条数据
+                    var data = $(this).combobox("getData");
+                    $(this).combobox("setValue", data[0].id);
+                }
             })
         })
     </script>

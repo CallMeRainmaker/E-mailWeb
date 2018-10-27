@@ -4,6 +4,9 @@
 .icon-send{
 	background:url('icon/send.png') no-repeat center center;
 }
+.icon-Send{
+	background:url('icon/Send.png') no-repeat center center;
+}
 .icon-sendbox{
 	background:url('icon/sendbox.png') no-repeat center center;
 }
@@ -47,7 +50,7 @@
 	background:url('icons/reload.png') no-repeat center center;
 }
 .icon-search{
-	background:url('icons/search.png') no-repeat center center;
+	background:url('icon/search.png') no-repeat center center;
 }
 .icon-print{
 	background:url('icons/print.png') no-repeat center center;

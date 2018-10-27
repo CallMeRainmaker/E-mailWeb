@@ -45,7 +45,7 @@
                     {
                         "menuid": "22",
                         "menuname":"发件箱",
-                        "icon":"icon-sendbox",
+                        "icon":"icon-send",
                         "url": "S"
                     }]
             },
