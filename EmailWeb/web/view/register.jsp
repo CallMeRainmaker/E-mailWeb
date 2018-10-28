@@ -64,8 +64,8 @@
             if(mValue == ""){
                 alert("电话不能为空");
                 return false;
-            }else if(!(/^1(35|39)\d{8}$/.test(mValue))){
-                alert("电话为135或139开头的十一位数字，请重填");
+            }else if(!(/^1(55|35)\d{8}$/.test(mValue))){
+                alert("电话为155或135开头的十一位数字，请重填");
                 return false;
             }
 

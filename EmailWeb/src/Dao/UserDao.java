@@ -45,8 +45,8 @@ public class UserDao extends BaseDao{
         return null;
     }
 
-    public List<User> getUserList(User user) throws SQLException {
-        String sql = "select * from user";
+    public List<User> getUserList(User user,User username) throws SQLException {
+        String sql = "select * from user where name not like '%"+username.getName()+"%'";
         if(!StringUtil.isEmpty(user.getName())){
             sql += " and name like '%" + user.getName() + "%'";
         }
@@ -54,7 +54,7 @@ public class UserDao extends BaseDao{
             sql += " and mobile like '%"+user.getMobile()+"%'";
         }
         List<User> users = new ArrayList<User>();
-        ResultSet resultSet = query(sql.replaceFirst("and","where"));
+        ResultSet resultSet = query(sql);
         while(resultSet.next()){
             User user1 = new User();
             user1.setId(resultSet.getInt("id"));
@@ -65,10 +65,10 @@ public class UserDao extends BaseDao{
         return users;
     }
 
-    public List<User> GetUserList(User user) throws SQLException {
-        String sql = "select * from user";
+    public List<User> GetUserList(User user,User username) throws SQLException {
+        String sql = "select * from user where name not like '%"+username.getName()+"%'";
         if(!StringUtil.isEmpty(user.getName())){
-            sql += " where name = '"+user.getName()+"'";
+            sql += " and name = '"+user.getName()+"'";
         }
         List<User> users = new ArrayList<User>();
         ResultSet resultSet = query(sql);

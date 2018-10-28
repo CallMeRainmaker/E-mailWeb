@@ -33,11 +33,12 @@ public class ContactorServlet extends HttpServlet {
 
     private void GetUserList(HttpServletRequest request, HttpServletResponse response) {
         String name = (String)request.getSession().getAttribute("name");
+        User username = (User)request.getSession().getAttribute("user");
         User user = new User();
         user.setName(name);
         UserDao userDao = new UserDao();
         try {
-            List<User> users = userDao.GetUserList(user);
+            List<User> users = userDao.GetUserList(user,username);
             try {
                 response.getWriter().write(JSONArray.fromObject(users).toString());
             } catch (IOException e) {
@@ -52,12 +53,13 @@ public class ContactorServlet extends HttpServlet {
     private void getUserList(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         String mobile = request.getParameter("mobile");
+        User username = (User)request.getSession().getAttribute("user");
         UserDao userDao = new UserDao();
         User user = new User();
         user.setName(name);
         user.setMobile(mobile);
         try {
-            List<User> users = userDao.getUserList(user);
+            List<User> users = userDao.getUserList(user,username);
             Map<String,Object> ret = new HashMap<>();
             ret.put("rows",users);
             response.setCharacterEncoding("UTF-8");
