@@ -1,11 +1,22 @@
 package Servlet;
 
+import Dao.MailDao;
+import Model.Mail;
+import Model.User;
+import Util.TimeUtil;
+import net.sf.json.JSON;
+import net.sf.json.JSONObject;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SendMailServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -16,6 +27,53 @@ public class SendMailServlet extends HttpServlet {
         String method = request.getParameter("method");
         if("SendMailView".equals(method)){
             SendMailView(request,response);
+        }else if("sendMail".equals(method)){
+            sendMail(request,response);
+        }else if("mailList".equals(method)){
+            try {
+                mailList(request,response);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void mailList(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        MailDao mailDao = new MailDao();
+        List<Mail> mailList = mailDao.getMailList();
+        Map<String,Object> map = new HashMap<>();
+        map.put("rows",mailList);
+        response.setCharacterEncoding("UTF-8");
+        try {
+            response.getWriter().write(JSONObject.fromObject(map).toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendMail(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String theme = request.getParameter("theme");
+        String content = request.getParameter("content");
+        User user = (User)request.getSession().getAttribute("user");
+        Mail mail = new Mail();
+        mail.setAccept_name(name);
+        mail.setTheme(theme);
+        mail.setContent(content);
+        mail.setTime(TimeUtil.getTime());
+        MailDao mailDao = new MailDao();
+        if(mailDao.sendMail(user,mail)){
+            try {
+                response.getWriter().write("success");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            try {
+                response.getWriter().write("sendError");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

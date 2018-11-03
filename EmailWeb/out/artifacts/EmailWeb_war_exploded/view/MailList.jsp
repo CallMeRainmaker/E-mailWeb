@@ -20,21 +20,15 @@
             //datagrid初始化
             $('#dataList').datagrid({
                 border: true,
-                collapsible: false,//是否可折叠的
                 fit: true,//自动大小
                 method: "post",
-                url: "",
-                idField: 'id',
+                url: "SendMailServlet?method=mailList",
                 singleSelect: false,//是否单选
-                pagination: false,//分页控件
-                rownumbers: true,//行号
-                sortName: 'id',
                 sortOrder: 'DESC',
-                remoteSort: false,
                 columns: [[
                     {field: 'chk', checkbox: true, width: 50},
                     {field: 'id', title: 'ID', width: 50, sortable: true},
-                    {field: 'sendid', title: '发件人', width: 200, sortable: true},
+                    {field: 'send_name', title: '发件人', width: 200, sortable: true},
                     {field: 'theme', title: '主题', width: 1200},
                     {field: 'time', title: '时间', width: 250}
                 ]],

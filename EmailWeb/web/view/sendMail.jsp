@@ -30,6 +30,20 @@
                     {
                         text:'发送',
                         iconCls:'icon-Send',
+                        handler:function(){
+                            $.ajax({
+                                type:"post",
+                                url:"SendMailServlet?method=sendMail",
+                                data: $("#sendList").serialize(),
+                                success:function (msg) {
+                                    if(msg == "success"){
+                                        $.messager.alert("消息提醒","发送成功")
+                                    }else if(msg == "sendError"){
+                                        $.messager.alert("消息提醒","发送失败")
+                                    }
+                                }
+                            })
+                        }
                     },
                     {
                         text:'取消',
@@ -38,10 +52,10 @@
                 ]
             })
 
-            $("#mail").combobox({
+            $("#name").combobox({
                 width: "800",
                 height: "30",
-                valueField: "id",
+                valueField: "name",
                 textField: "name",
                 panelHeight: "auto",
                 multiple: false, //不可多选
@@ -51,7 +65,7 @@
                 onLoadSuccess: function(){
                     //默认选择第一条数据
                     var data = $(this).combobox("getData");
-                    $(this).combobox("setValue", data[0].id);
+                    $(this).combobox("setValue", data[0].name);
                 }
             })
         })
@@ -64,13 +78,13 @@
                 <tr>
                     <td>收件人:</td>
                     <td>
-                        <input id="mail" name="mail"  class="easyui-textbox"/>
+                        <input id="name" name="name"  class="easyui-textbox"/>
                     </td>
                 </tr>
                 <tr>
                     <td>主题:</td>
                     <td>
-                        <input id="theme" style="width: 800px; height: 30px;" class="easyui-textbox" name="theme"  />
+                        <input id="theme" style="width: 800px; height: 30px;" class="easyui-textbox" name="theme"/>
                     </td>
                 </tr>
                 <tr>
