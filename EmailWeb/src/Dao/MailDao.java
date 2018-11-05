@@ -16,8 +16,8 @@ public class MailDao extends BaseDao{
         return update(sql);
     }
 
-    public List<Mail> getMailList() throws SQLException {
-        String sql = "select * from mail";
+    public List<Mail> getMailList(User user) throws SQLException {
+        String sql = "select * from mail where accept_name = '"+user.getName()+"'";
         ResultSet resultSet = query(sql);
         List<Mail> mailList = new ArrayList<Mail>();
         if(resultSet.next()){

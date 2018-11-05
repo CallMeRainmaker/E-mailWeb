@@ -89,7 +89,7 @@
                 </tr>
                 <tr>
                     <td>正文:</td>
-                    <td><input id="content" style="width: 800px; height: 600px;" class="easyui-textbox" name="content"   /></td>
+                    <td><textarea id="content" name="content" rows="10000" wrap="hard" style="width:800px;height:600px;" ></textarea></td>
                 </tr>
             </table>
         </form>

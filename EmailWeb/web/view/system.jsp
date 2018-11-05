@@ -79,10 +79,10 @@
 </head>
 <body class="easyui-layout" style="overflow-y: hidden"  scroll="no">
 <div region="north" split="true" border="false" style="overflow: hidden; height: 30px;
-        background: url(../images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
+        background:  #D2E0F2 repeat-x center 50%;
         line-height: 20px;color: #fff; font-family: Verdana, 微软雅黑,黑体">
-    <span style="float:right; padding-right:20px;" class="head"><span style="color:black; font-weight:bold;">${user.name}&nbsp;</span>您好&nbsp;&nbsp;&nbsp;<a href="LoginServlet?method=logout" id="loginOut">安全退出</a></span>
-    <span style="padding-left:10px; font-size: 16px; ">海客邮箱</span>
+    <span style="float:right;color:black; padding-right:20px;" class="head"><span style="color:black; font-weight:bold;">${user.name}&nbsp;</span>您好&nbsp;&nbsp;&nbsp;<a href="LoginServlet?method=logout" style="color: black" id="loginOut">安全退出</a></span>
+    <span style="padding-left:10px;color:black; font-size: 16px; ">海客邮箱</span>
 </div>
 <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
     <div class="footer" align="center">Copyright &copy; By 胡旭东</div>

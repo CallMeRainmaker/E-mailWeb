@@ -40,7 +40,8 @@ public class SendMailServlet extends HttpServlet {
 
     private void mailList(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         MailDao mailDao = new MailDao();
-        List<Mail> mailList = mailDao.getMailList();
+        User user = (User)request.getSession().getAttribute("user");
+        List<Mail> mailList = mailDao.getMailList(user);
         Map<String,Object> map = new HashMap<>();
         map.put("rows",mailList);
         response.setCharacterEncoding("UTF-8");
