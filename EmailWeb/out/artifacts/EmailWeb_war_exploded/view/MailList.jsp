@@ -22,7 +22,7 @@
                 border: true,
                 fit: true,//自动大小
                 method: "post",
-                url: "SendMailServlet?method=mailList",
+                url: "AcceptMailServlet?method=mailList",
                 singleSelect: false,//是否单选
                 sortOrder: 'DESC',
                 columns: [[
@@ -34,6 +34,34 @@
                 ]],
                 toolbar: "#toolbar"
             });
+
+            $("#delete").click(function () {
+                var selectRows = $("#dataList").datagrid("getSelections");
+                var selectLength = selectRows.length;
+                if(selectLength == 0){
+                    $.messager.alert("消息提醒","请选择数据")
+                }else{
+                    var ids = [];
+                    $(selectRows).each(function (i,row) {
+                        ids[i] = row.id;
+                    })
+                    $.ajax({
+                        type:"post",
+                        url:"AcceptMailServlet?method=deleteMail",
+                        data:{ids:ids},
+                        success:function (msg) {
+                            if(msg == "success"){
+                                $.messager.alert("消息提醒","删除成功");
+                                $("#dataList").datagrid("reload");
+                                $("#dataList").datagrid("uncheckAll");
+                            }else{
+                                $.messager.alert("消息提醒","删除失败");
+                                return;
+                            }
+                        }
+                    })
+                }
+            })
         })
     </script>
 </head>

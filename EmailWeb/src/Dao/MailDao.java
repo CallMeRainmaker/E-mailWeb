@@ -20,7 +20,7 @@ public class MailDao extends BaseDao{
         String sql = "select * from mail where accept_name = '"+user.getName()+"'";
         ResultSet resultSet = query(sql);
         List<Mail> mailList = new ArrayList<Mail>();
-        if(resultSet.next()){
+        while(resultSet.next()){
            Mail mail = new Mail();
            mail.setId(resultSet.getInt("id"));
            mail.setSend_name(resultSet.getString("send_name"));
@@ -29,5 +29,10 @@ public class MailDao extends BaseDao{
            mailList.add(mail);
         }
         return mailList;
+    }
+
+    public boolean deleteMail(String string){
+        String sql = "delete from mail where id in("+string+")";
+        return update(sql);
     }
 }

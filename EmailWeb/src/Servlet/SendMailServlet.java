@@ -29,28 +29,10 @@ public class SendMailServlet extends HttpServlet {
             SendMailView(request,response);
         }else if("sendMail".equals(method)){
             sendMail(request,response);
-        }else if("mailList".equals(method)){
-            try {
-                mailList(request,response);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
-    private void mailList(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        MailDao mailDao = new MailDao();
-        User user = (User)request.getSession().getAttribute("user");
-        List<Mail> mailList = mailDao.getMailList(user);
-        Map<String,Object> map = new HashMap<>();
-        map.put("rows",mailList);
-        response.setCharacterEncoding("UTF-8");
-        try {
-            response.getWriter().write(JSONObject.fromObject(map).toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     private void sendMail(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");

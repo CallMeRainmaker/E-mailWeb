@@ -38,6 +38,8 @@
                                 success:function (msg) {
                                     if(msg == "success"){
                                         $.messager.alert("消息提醒","发送成功")
+                                        $("#theme").setValue('setValue', "");
+                                        $("#content").setValue('setValue', "");
                                     }else if(msg == "sendError"){
                                         $.messager.alert("消息提醒","发送失败")
                                     }
