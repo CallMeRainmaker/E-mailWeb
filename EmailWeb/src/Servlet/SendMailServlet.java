@@ -47,6 +47,8 @@ public class SendMailServlet extends HttpServlet {
         MailDao mailDao = new MailDao();
         if(mailDao.sendMail(user,mail)){
             try {
+                HttpSession session = request.getSession();
+                session.setAttribute("mail",mail);
                 response.getWriter().write("success");
             } catch (IOException e) {
                 e.printStackTrace();

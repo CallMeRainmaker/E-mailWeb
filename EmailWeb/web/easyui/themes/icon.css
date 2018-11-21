@@ -1,3 +1,12 @@
+.icon-delete{
+	background:url('icon/delete.png')  no-repeat center center;
+}
+.icon-readed{
+	background:url('icon/readed.png') no-repeat center center;
+}
+.icon-view{
+	background:url('icon/view.png') no-repeat center center;
+}
 .icon-accept{
 	background:url('icon/accept.png')  no-repeat center center;
 }

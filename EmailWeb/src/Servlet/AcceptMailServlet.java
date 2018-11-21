@@ -32,6 +32,18 @@ public class AcceptMailServlet extends HttpServlet {
             }
         }else if("deleteMail".equals(method)){
             deleteMail(request,response);
+        }else if("MailContentView".equals(method)){
+            MailContentView(request,response);
+        }
+    }
+
+    private void MailContentView(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.getRequestDispatcher("view/MailContent.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

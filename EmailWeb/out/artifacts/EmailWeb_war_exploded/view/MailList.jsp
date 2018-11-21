@@ -39,7 +39,7 @@
                 var selectRows = $("#dataList").datagrid("getSelections");
                 var selectLength = selectRows.length;
                 if(selectLength == 0){
-                    $.messager.alert("消息提醒","请选择数据")
+                    $.messager.alert("消息提醒","请选择数据","warning")
                 }else{
                     var ids = [];
                     $(selectRows).each(function (i,row) {
@@ -62,6 +62,21 @@
                     })
                 }
             })
+
+            $("#view").click(function () {
+                var selectrow = $("#dataList").datagrid("getSelections");
+                var length = selectrow.length;
+                var MailId = selectrow.id;
+                if(length == 1){
+                    $.ajax({
+                        url:$(window).attr({
+                            'location':'AcceptMailServlet?method=MailContentView&Mailid='+MailId
+                        })
+                    })
+                }else{
+                    $.messager.alert("消息提醒","请选择一封邮件","warning")
+                }
+            })
         })
     </script>
 </head>
@@ -70,10 +85,12 @@
 
 </table>
 <div id="toolbar">
-    <div style="float: left;"><a id="delete" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">删除</a></div>
+    <div style="float: left;"><a id="delete" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-delete',plain:true">删除</a></div>
     <div style="float: left;" class="datagrid-btn-separator"></div>
-    <div style="float: left;"><a id="read" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-some-delete',plain:true">标为已读</a></div>
-    </div>
+    <div style="float: left;"><a id="readed" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-readed',plain:true">标为已读</a></div>
+    <div style="float: left;" class="datagrid-btn-separator"></div>
+    <div style="float: left;"><a id="view" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-view',plain:true">查看</a></div>
+</div>
 
 </div>
 </body>
