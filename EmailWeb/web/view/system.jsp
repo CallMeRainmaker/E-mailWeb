@@ -46,7 +46,7 @@
                         "menuid": "22",
                         "menuname":"发件箱",
                         "icon":"icon-send",
-                        "url": "S"
+                        "url": "SendMailServlet?method=SendMailList"
                     }]
             },
                 {

@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -34,11 +35,31 @@ public class AcceptMailServlet extends HttpServlet {
             deleteMail(request,response);
         }else if("MailContentView".equals(method)){
             MailContentView(request,response);
+        }else if("getMailContent".equals(method)){
+            try {
+                getMailContent(request,response);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void getMailContent(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        Mail mail = (Mail)request.getSession().getAttribute("mail");
+        try {
+            request.getRequestDispatcher("view/MailContent.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     private void MailContentView(HttpServletRequest request, HttpServletResponse response) {
         try {
+            String mail = request.getParameter("mail");
+            HttpSession session = request.getSession();
+            session.setAttribute("mail",mail);
             request.getRequestDispatcher("view/MailContent.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();

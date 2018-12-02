@@ -22,13 +22,13 @@
                 border: true,
                 fit: true,//自动大小
                 method: "post",
-                url: "AcceptMailServlet?method=mailList",
+                url: "SendMailServlet?method=getMailList",
                 singleSelect: false,//是否单选
                 sortOrder: 'DESC',
                 columns: [[
                     {field: 'chk', checkbox: true, width: 50},
                     {field: 'id', title: 'ID', width: 50, sortable: true},
-                    {field: 'send_name', title: '发件人', width: 200, sortable: true},
+                    {field: 'accept_name', title: '收件人', width: 200, sortable: true},
                     {field: 'theme', title: '主题', width: 1200},
                     {field: 'time', title: '时间', width: 250}
                 ]],

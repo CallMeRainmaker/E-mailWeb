@@ -23,15 +23,42 @@ public class SendMailServlet extends HttpServlet {
         doPost(request,response);
     }
 
-    public void doPost(HttpServletRequest request,HttpServletResponse response){
+    public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException {
         String method = request.getParameter("method");
         if("SendMailView".equals(method)){
             SendMailView(request,response);
         }else if("sendMail".equals(method)){
             sendMail(request,response);
+        }else if("SendMailList".equals(method)){
+            SendMailList(request,response);
+        }else if("getMailList".equals(method)){
+            getMailList(request,response);
         }
     }
 
+    private void getMailList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        User user = (User)request.getSession().getAttribute("user");
+        MailDao mailDao = new MailDao();
+        try {
+            List<Mail> mailList = mailDao.getSendMailList(user);
+            Map<String,Object> map = new HashMap<>();
+            map.put("rows",mailList);
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(JSONObject.fromObject(map).toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void SendMailList(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.getRequestDispatcher("/view/SendMailList.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     private void sendMail(HttpServletRequest request, HttpServletResponse response) {

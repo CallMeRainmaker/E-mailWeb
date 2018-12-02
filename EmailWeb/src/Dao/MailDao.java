@@ -16,6 +16,21 @@ public class MailDao extends BaseDao{
         return update(sql);
     }
 
+    public List<Mail> getSendMailList(User user) throws SQLException {
+        String sql = "select * from mail where send_name = '"+user.getName()+"'";
+        ResultSet resultSet = query(sql);
+        List<Mail> mailList = new ArrayList<>();
+        if(resultSet.next()){
+            Mail mail = new Mail();
+            mail.setId(resultSet.getInt("id"));
+            mail.setAccept_name(resultSet.getString("accept_name"));
+            mail.setTheme(resultSet.getString("theme"));
+            mail.setTime(resultSet.getString("time"));
+            mailList.add(mail);
+        }
+        return mailList;
+    }
+
     public List<Mail> getMailList(User user) throws SQLException {
         String sql = "select * from mail where accept_name = '"+user.getName()+"'";
         ResultSet resultSet = query(sql);
@@ -29,6 +44,18 @@ public class MailDao extends BaseDao{
            mailList.add(mail);
         }
         return mailList;
+    }
+
+    public Mail getMailContent(String id) throws SQLException {
+        String sql = "select * from mail where id =" + id;
+        ResultSet resultSet = query(sql);
+        Mail mail = new Mail();
+        if(resultSet.next()){
+            mail.setAccept_name(resultSet.getString("accept_name"));
+            mail.setTheme(resultSet.getString("theme"));
+            mail.setContent(resultSet.getString("content"));
+        }
+        return mail;
     }
 
     public boolean deleteMail(String string){

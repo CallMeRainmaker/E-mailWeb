@@ -23,6 +23,7 @@
                 closed:false,
                 modal: false,
                 noheader: true,
+                url:"AcceptMailServlet?method=getMailContent",
                 toolbar:[
                     {
                         text:"删除",
@@ -53,7 +54,8 @@
             <tr>
                 <td>收件人:</td>
                 <td>
-                    <input id="name" name="name"  class="easyui-textbox"/>
+                    <%--<input id="name" style="width: 800px; height: 30px;" name="name"  class="easyui-textbox"/>--%>
+                    ${mail.accept_name}
                 </td>
             </tr>
             <tr>

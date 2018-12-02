@@ -66,11 +66,12 @@
             $("#view").click(function () {
                 var selectrow = $("#dataList").datagrid("getSelections");
                 var length = selectrow.length;
-                var MailId = selectrow.id;
+                // var mail = selectrow.get();
                 if(length == 1){
                     $.ajax({
+                        data:mail,
                         url:$(window).attr({
-                            'location':'AcceptMailServlet?method=MailContentView&Mailid='+MailId
+                            'location':'AcceptMailServlet?method=MailContentView&Mail='+mail,
                         })
                     })
                 }else{
