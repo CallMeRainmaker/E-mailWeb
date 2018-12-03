@@ -26,11 +26,17 @@
                 singleSelect: false,//是否单选
                 sortOrder: 'DESC',
                 columns: [[
-                    {field: 'chk', checkbox: true, width: 50},
+                    // {field: 'chk', checkbox: true, width: 50},
                     {field: 'id', title: 'ID', width: 50, sortable: true},
                     {field: 'accept_name', title: '收件人', width: 200, sortable: true},
-                    {field: 'theme', title: '主题', width: 1200},
-                    {field: 'time', title: '时间', width: 250}
+                    {field: 'theme', title: '主题', width: 1000},
+                    {field: 'time', title: '时间', width: 250},
+                    {field: 'operate',title:'操作',width:200,
+                        formatter:function(value,rec,index){
+                            var view = '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-view\',plain:true" onclick="getContent('+value+')">查看</a>';
+                            return view;
+                        }
+                    }
                 ]],
                 toolbar: "#toolbar"
             });
@@ -47,7 +53,7 @@
                     })
                     $.ajax({
                         type:"post",
-                        url:"AcceptMailServlet?method=deleteMail",
+                        url:"AcceptMailServlet?method=deleteMail&from=send",
                         data:{ids:ids},
                         success:function (msg) {
                             if(msg == "success"){

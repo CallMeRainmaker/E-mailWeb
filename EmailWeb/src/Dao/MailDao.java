@@ -10,14 +10,14 @@ import java.util.List;
 
 public class MailDao extends BaseDao{
     public boolean sendMail(User user, Mail mail){
-        String sql = "insert into mail values(null,'"+user.getName()+"'," +
+        String sql = "insert into send_mail values(null,'"+user.getName()+"'," +
                 "'"+mail.getAccept_name()+"','"+mail.getTheme()+"'," +
                 "'"+mail.getContent()+"','"+mail.getTime()+"')";
         return update(sql);
     }
 
     public List<Mail> getSendMailList(User user) throws SQLException {
-        String sql = "select * from mail where send_name = '"+user.getName()+"'";
+        String sql = "select * from send_mail where send_name = '"+user.getName()+"'";
         ResultSet resultSet = query(sql);
         List<Mail> mailList = new ArrayList<>();
         if(resultSet.next()){
@@ -32,7 +32,7 @@ public class MailDao extends BaseDao{
     }
 
     public List<Mail> getMailList(User user) throws SQLException {
-        String sql = "select * from mail where accept_name = '"+user.getName()+"'";
+        String sql = "select * from accept_mail where accept_name = '"+user.getName()+"'";
         ResultSet resultSet = query(sql);
         List<Mail> mailList = new ArrayList<Mail>();
         while(resultSet.next()){
@@ -58,8 +58,13 @@ public class MailDao extends BaseDao{
         return mail;
     }
 
-    public boolean deleteMail(String string){
-        String sql = "delete from mail where id in("+string+")";
+    public boolean deleteMailFromAccept(String string){
+        String sql = "delete from accept_mail where id in("+string+")";
+        return update(sql);
+    }
+
+    public boolean deleteMailFromSend(String string){
+        String sql = "delete from send_mail where id in("+string+")";
         return update(sql);
     }
 }

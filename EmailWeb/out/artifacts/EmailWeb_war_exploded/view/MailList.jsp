@@ -47,7 +47,7 @@
                     })
                     $.ajax({
                         type:"post",
-                        url:"AcceptMailServlet?method=deleteMail",
+                        url:"AcceptMailServlet?method=deleteMail&from=accept",
                         data:{ids:ids},
                         success:function (msg) {
                             if(msg == "success"){

@@ -76,19 +76,37 @@ public class AcceptMailServlet extends HttpServlet {
         }
         idStr = idStr.substring(0,idStr.length()-1);
         MailDao mailDao = new MailDao();
-        if(mailDao.deleteMail(idStr)){
-            try {
-                response.getWriter().write("success");
-            } catch (IOException e) {
-                e.printStackTrace();
+        String from = request.getParameter("from");
+        if("accept".equals(from)){
+            if(mailDao.deleteMailFromAccept(idStr)){
+                try {
+                    response.getWriter().write("success");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                try {
+                    response.getWriter().write("deleteError");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        }else {
-            try {
-                response.getWriter().write("deleteError");
-            } catch (IOException e) {
-                e.printStackTrace();
+        }else if("send".equals(from)){
+            if(mailDao.deleteMailFromSend(idStr)){
+                try {
+                    response.getWriter().write("success");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                try {
+                    response.getWriter().write("deleteError");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
+
     }
 
     public void AcceptMailView(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
