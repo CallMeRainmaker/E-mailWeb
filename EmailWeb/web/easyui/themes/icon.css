@@ -1,3 +1,6 @@
+.icon-return{
+	background:url('icon/return.png')  no-repeat center center;
+}
 .icon-delete{
 	background:url('icon/delete.png')  no-repeat center center;
 }

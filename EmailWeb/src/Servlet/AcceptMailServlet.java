@@ -35,35 +35,22 @@ public class AcceptMailServlet extends HttpServlet {
             deleteMail(request,response);
         }else if("MailContentView".equals(method)){
             MailContentView(request,response);
-        }else if("getMailContent".equals(method)){
-            try {
-                getMailContent(request,response);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void getMailContent(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        Mail mail = (Mail)request.getSession().getAttribute("mail");
-        try {
-            request.getRequestDispatcher("view/MailContent.jsp").forward(request,response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
     private void MailContentView(HttpServletRequest request, HttpServletResponse response) {
         try {
-            String mail = request.getParameter("mail");
+            String id = request.getParameter("id");
+            MailDao mailDao = new MailDao();
+            Mail mail = mailDao.getMailContentFromAccept(id);
             HttpSession session = request.getSession();
             session.setAttribute("mail",mail);
-            request.getRequestDispatcher("view/MailContent.jsp").forward(request,response);
+            request.getRequestDispatcher("view/AcceptMailContent.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -110,7 +97,7 @@ public class AcceptMailServlet extends HttpServlet {
     }
 
     public void AcceptMailView(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/view/MailList.jsp").forward(request,response);
+        request.getRequestDispatcher("/view/AcceptMailList.jsp").forward(request,response);
     }
 
     private void mailList(HttpServletRequest request, HttpServletResponse response) throws SQLException {

@@ -1,3 +1,4 @@
+<%@ page import="Model.Mail" %>
 <%--
   Created by IntelliJ IDEA.
   User: huxudong
@@ -23,7 +24,6 @@
                 closed:false,
                 modal: false,
                 noheader: true,
-                url:"AcceptMailServlet?method=getMailContent",
                 toolbar:[
                     {
                         text:"删除",
@@ -33,7 +33,7 @@
                     {
                         text:"返回",
                         plain:true,
-                        iconCls:'icon-delete',
+                        iconCls:'icon-return',
                         handler:function(){
                             $.ajax({
                                 url:$(window).attr({
@@ -51,22 +51,22 @@
 <div id="contentList">
     <form id="sendList" style="alignment: center">
         <table cellpadding="8" >
+            <% Mail mail = (Mail)request.getSession().getAttribute("mail");%>
             <tr>
-                <td>收件人:</td>
+                <td>发件人:</td>
                 <td>
-                    <%--<input id="name" style="width: 800px; height: 30px;" name="name"  class="easyui-textbox"/>--%>
-                    ${mail.accept_name}
+                    <span style="color:black; "><%=mail.getSend_name()%></span>
                 </td>
             </tr>
             <tr>
                 <td>主题:</td>
                 <td>
-                    <input id="theme" style="width: 800px; height: 30px;" class="easyui-textbox" name="theme"/>
+                    <input id="theme" readonly="true" style="width: 800px; height: 30px;" class="easyui-textbox" name="theme" value="<%=mail.getTheme()%>">
                 </td>
             </tr>
             <tr>
                 <td>正文:</td>
-                <td><textarea id="content" name="content" rows="10000" wrap="hard" style="width:800px;height:600px;" ></textarea></td>
+                <td><textarea readonly="true" id="content" name="content" rows="10000" wrap="hard" style="width:800px;height:600px;" ><%=mail.getContent()%></textarea></td>
             </tr>
         </table>
     </form>

@@ -20,7 +20,7 @@ public class MailDao extends BaseDao{
         String sql = "select * from send_mail where send_name = '"+user.getName()+"'";
         ResultSet resultSet = query(sql);
         List<Mail> mailList = new ArrayList<>();
-        if(resultSet.next()){
+        while(resultSet.next()){
             Mail mail = new Mail();
             mail.setId(resultSet.getInt("id"));
             mail.setAccept_name(resultSet.getString("accept_name"));
@@ -46,16 +46,36 @@ public class MailDao extends BaseDao{
         return mailList;
     }
 
-    public Mail getMailContent(String id) throws SQLException {
-        String sql = "select * from mail where id =" + id;
+    public Mail getMailContentFromAccept(String id) throws SQLException {
+        String sql = "select * from accept_mail where id = '"+id+"'";
         ResultSet resultSet = query(sql);
         Mail mail = new Mail();
-        if(resultSet.next()){
-            mail.setAccept_name(resultSet.getString("accept_name"));
-            mail.setTheme(resultSet.getString("theme"));
-            mail.setContent(resultSet.getString("content"));
+        if(resultSet==null){
+            return null;
+        }else{
+            if(resultSet.next()){
+                mail.setSend_name(resultSet.getString("send_name"));
+                mail.setTheme(resultSet.getString("theme"));
+                mail.setContent(resultSet.getString("content"));
+            }
+            return mail;
         }
-        return mail;
+    }
+
+    public Mail getMailContentFromSend(String id) throws SQLException {
+        String sql = "select * from send_mail where id = '"+id+"'";
+        ResultSet resultSet = query(sql);
+        Mail mail = new Mail();
+        if(resultSet==null){
+            return null;
+        }else{
+            if(resultSet.next()){
+                mail.setAccept_name(resultSet.getString("accept_name"));
+                mail.setTheme(resultSet.getString("theme"));
+                mail.setContent(resultSet.getString("content"));
+            }
+            return mail;
+        }
     }
 
     public boolean deleteMailFromAccept(String string){

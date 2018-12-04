@@ -33,7 +33,24 @@ public class SendMailServlet extends HttpServlet {
             SendMailList(request,response);
         }else if("getMailList".equals(method)){
             getMailList(request,response);
+        }else if("MailContentView".equals(method)){
+            try {
+                MailContentView(request,response);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    private void MailContentView(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String id = request.getParameter("id");
+        MailDao mailDao = new MailDao();
+        Mail mail = mailDao.getMailContentFromSend(id);
+        HttpSession session = request.getSession();
+        session.setAttribute("mail",mail);
+        request.getRequestDispatcher("/view/SendMailContent.jsp").forward(request,response);
     }
 
     private void getMailList(HttpServletRequest request, HttpServletResponse response) throws IOException {

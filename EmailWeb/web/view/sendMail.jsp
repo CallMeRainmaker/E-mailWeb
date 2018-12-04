@@ -53,23 +53,6 @@
                     }
                 ]
             })
-
-            $("#name").combobox({
-                width: "800",
-                height: "30",
-                valueField: "name",
-                textField: "name",
-                panelHeight: "auto",
-                multiple: false, //不可多选
-                editable: false, //不可编辑
-                method: "post",
-                url: "ContactorServlet?method=GetUserList",
-                onLoadSuccess: function(){
-                    //默认选择第一条数据
-                    var data = $(this).combobox("getData");
-                    $(this).combobox("setValue", data[0].name);
-                }
-            })
         })
     </script>
 </head>
