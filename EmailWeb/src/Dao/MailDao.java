@@ -2,6 +2,7 @@ package Dao;
 
 import Model.Mail;
 import Model.User;
+import Util.StringUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,6 +55,7 @@ public class MailDao extends BaseDao{
             return null;
         }else{
             if(resultSet.next()){
+                mail.setId(resultSet.getInt("id"));
                 mail.setSend_name(resultSet.getString("send_name"));
                 mail.setTheme(resultSet.getString("theme"));
                 mail.setContent(resultSet.getString("content"));
@@ -70,6 +72,7 @@ public class MailDao extends BaseDao{
             return null;
         }else{
             if(resultSet.next()){
+                mail.setId(resultSet.getInt("id"));
                 mail.setAccept_name(resultSet.getString("accept_name"));
                 mail.setTheme(resultSet.getString("theme"));
                 mail.setContent(resultSet.getString("content"));
@@ -83,8 +86,18 @@ public class MailDao extends BaseDao{
         return update(sql);
     }
 
+    public boolean DeleteMailFromAccept(int id){
+        String sql = "delete from accept_mail where id = '"+id+"'";
+        return update(sql);
+    }
+
     public boolean deleteMailFromSend(String string){
         String sql = "delete from send_mail where id in("+string+")";
+        return update(sql);
+    }
+
+    public boolean DeleteMailFromSend(int id){
+        String sql = "delete from send_mail where id = '"+id+"'";
         return update(sql);
     }
 }

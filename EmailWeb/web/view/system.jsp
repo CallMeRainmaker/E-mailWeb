@@ -99,7 +99,6 @@
     </div>
 </div>
 
-<iframe width=0 height=0 src="refresh.jsp"></iframe>
 
 </body>
 </html>

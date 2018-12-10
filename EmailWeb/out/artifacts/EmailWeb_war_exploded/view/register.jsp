@@ -48,38 +48,38 @@
             var uValue = document.getElementById("username").value;
             if (uValue == "") {
                 //2.给出错误提示信息
-                alert("邮箱不能为空!");
+                $.messager.alert("消息提醒","邮箱不能为空!","warning");
                 return false;
             }
 
             /*校验邮箱*/
             var eValue = document.getElementById("username").value;
             if (!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(eValue)) {
-                alert("邮箱格式不正确!");
+                $.messager.alert("消息提醒","邮箱格式不正确!","warning");
                 return false;
             }
 
             /*检验电话*/
             var mValue = document.getElementById("mobile").value;
             if(mValue == ""){
-                alert("电话不能为空");
+                $.messager.alert("消息提醒","电话不能为空!","warning");
                 return false;
             }else if(!(/^1(55|35)\d{8}$/.test(mValue))){
-                alert("电话为155或135开头的十一位数字，请重填");
+                $.messager.alert("消息提醒","电话为155或135开头的十一位数字，请重填!","warning");
                 return false;
             }
 
             /*校验密码*/
             var pValue = document.getElementById("password").value;
             if(pValue == "") {
-                alert("密码不能为空!");
+                $.messager.alert("消息提醒","密码不能为空!","warning");
                 return false;
             }
 
             /**校验确认密码*/
             var rpValue = document.getElementById("repassword").value;
             if(rpValue != pValue) {
-                alert("两次密码输入不一致!");
+                $.messager.alert("消息提醒","两次密码输入不一致!","warning");
                 return false;
             }
             var data = $("#form").serialize();

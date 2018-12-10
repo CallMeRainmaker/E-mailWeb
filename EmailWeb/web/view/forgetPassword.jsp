@@ -21,14 +21,14 @@
             /*校验密码*/
             var pValue = document.getElementById("password").value;
             if(pValue == "") {
-                alert("密码不能为空!");
+                $.messager.alert("消息提醒","密码不能为空!","warning");
                 return false;
             }
 
-            /**校验确认密码*/
+            /*校验确认密码*/
             var rpValue = document.getElementById("repassword").value;
             if(rpValue != pValue) {
-                alert("两次密码输入不一致!");
+                $.messager.alert("消息提醒","俩次输入密码不一致!","warning");
                 return false;
             }
             var data = $("#form").serialize();

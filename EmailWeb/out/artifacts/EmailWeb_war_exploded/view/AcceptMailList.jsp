@@ -87,8 +87,6 @@
 <div id="toolbar">
     <div style="float: left;"><a id="delete" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-delete',plain:true">删除</a></div>
     <div style="float: left;" class="datagrid-btn-separator"></div>
-    <div style="float: left;"><a id="readed" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-readed',plain:true">标为已读</a></div>
-    <div style="float: left;" class="datagrid-btn-separator"></div>
     <div style="float: left;"><a id="view" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-view',plain:true">查看</a></div>
 </div>
 

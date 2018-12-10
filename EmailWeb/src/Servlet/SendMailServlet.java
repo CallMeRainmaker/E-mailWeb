@@ -41,6 +41,26 @@ public class SendMailServlet extends HttpServlet {
             } catch (ServletException e) {
                 e.printStackTrace();
             }
+        }else if("DeleteMail".equals(method)){
+            DeleteMail(request,response);
+        }
+    }
+
+    private void DeleteMail(HttpServletRequest request, HttpServletResponse response) {
+        Mail mail = (Mail)request.getSession().getAttribute("mail");
+        MailDao mailDao = new MailDao();
+        if(mailDao.DeleteMailFromSend(mail.getId())){
+            try {
+                response.getWriter().write("success");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            try {
+                response.getWriter().write("error");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

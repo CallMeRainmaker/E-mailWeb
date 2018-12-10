@@ -28,30 +28,46 @@
                 closed: false,
                 buttons: [
                     {
-                        text:'发送',
-                        iconCls:'icon-Send',
-                        handler:function(){
+                        text: '发送',
+                        iconCls: 'icon-Send',
+                        handler: function () {
                             $.ajax({
-                                type:"post",
-                                url:"SendMailServlet?method=sendMail",
+                                type: "post",
+                                url: "SendMailServlet?method=sendMail",
                                 data: $("#sendList").serialize(),
-                                success:function (msg) {
-                                    if(msg == "success"){
-                                        $.messager.alert("消息提醒","发送成功")
-                                        $("#theme").setValue('setValue', "");
-                                        $("#content").setValue('setValue', "");
-                                    }else if(msg == "sendError"){
-                                        $.messager.alert("消息提醒","发送失败")
+                                success: function (msg) {
+                                    if (msg == "success") {
+                                        $.messager.alert("消息提醒", "发送成功")
+                                        setTimeout(function(){
+                                            $(window).attr({
+                                                'location': 'SendMailServlet?method=SendMailView'
+                                            })
+                                        }, 1000);
+                                    } else if (msg == "sendError") {
+                                        $.messager.alert("消息提醒", "发送失败")
                                     }
                                 }
                             })
                         }
-                    },
-                    {
-                        text:'取消',
-                        iconCls:'icon-reload',
                     }
                 ]
+            })
+
+            $("#name").combobox({
+                width: "200",
+                height: "25",
+                valueField: "name",
+                textField: "name",
+                multiple: false, //可多选
+                editable: false, //不可编辑
+                panelHeight:"auto",
+                method: "post",
+                url: "ContactorServlet?method=GetUserList",
+                onLoadSuccess: function () {
+                    //默认选择第一条数据
+                    var data = $(this).combobox("getData");
+                    $(this).combobox("setValue", data[0].name);
+                }
             })
         })
     </script>

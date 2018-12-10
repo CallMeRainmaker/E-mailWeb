@@ -28,7 +28,26 @@
                     {
                         text:"删除",
                         plain: true,
-                        iconCls:'icon-delete'
+                        iconCls:'icon-delete',
+                        handler:function () {
+                            $.ajax({
+                                type:"post",
+                                url:"AcceptMailServlet?method=DeleteMail",
+                                success:function (msg) {
+                                    if(msg == "success"){
+                                        $.messager.alert("消息提醒","删除成功");
+                                        setTimeout(function(){
+                                            $(window).attr({
+                                                'location':'AcceptMailServlet?method=AcceptMailView'})
+                                        }, 1000);
+
+                                    }else{
+                                        $.messager.alert("消息提醒","删除失败");
+                                        return;
+                                    }
+                                }
+                            })
+                        }
                     },
                     {
                         text:"返回",
